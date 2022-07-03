@@ -1,6 +1,6 @@
 # Commerce_Order_API
 ## 1. 개요
-e-commerce 서비스 도메인 개발
+### e-commerce 서비스 도메인 개발
   1) 유저 : 서비스를 통해 상품 선택 주문 고객
   2) 파트너 : 서비스에 입점하여 상품을 판매하는 업체
   3) 내부 운영자 : 해당 서비스 운영 및 관리 담당자
@@ -78,31 +78,36 @@ e-commerce 서비스 도메인 개발
 1. 성공응답
 ```json
 {
-result : "SUCCESS"
-data : "plain text 또는 json 데이터"
-message : "성공 메시지"
-error_code : null
+  "result" : "SUCCESS",
+  "data" : "plain text 또는 json 데이터",
+  "message" : "성공 메시지",
+  "error_code" : null
 }
 ```
 
 2. 실패응답
-- 비즈니스적인 에러상황과 개발단계에서 충분히 예상 및 지정한 에러(HttpStatus.2xx)
-- 잘못된 파라미터 등 .. (HttpStatus.4xx)
-- 요청에 대한 응답을 서버가 받아내지 못했거나 지정하지 않은 에러(HttpStatus.5xx) → 모니링 대상
-result : "FAIL"
-data : "null 또는 json 데이터"
-message : "에러 메시지"
-error_code : "plain text"
+```json
+{
+  "result" : "FAIL",
+  "data" : "null 또는 json 데이터",
+  "message" : "에러 메시지",
+  "error_code" : "plain text"
+}
+```
+    - 비즈니스적인 에러상황과 개발단계에서 충분히 예상 및 지정한 에러(HttpStatus.2xx)
+    - 잘못된 파라미터 등 .. (HttpStatus.4xx)
+    - 요청에 대한 응답을 서버가 받아내지 못했거나 지정하지 않은 에러(HttpStatus.5xx) → 모니링 대상
+
 
 * 도메인 API 구현
-- 동기식 http api 구현
-- content-type = application/json
-- API endpoint = /api/{version}/partners 의 패턴을 PREFIX로 한다.
+    - 동기식 http api 구현
+    - content-type = application/json
+    - API endpoint = /api/{version}/partners 의 패턴을 PREFIX로 한다.
 
 * 시스템 간 일관된 응답 체계 구축
-- BaseException : 커스텀 예외 관련 기본 형태 (명시적 예외의 기본 구조)
-- CommonResponse : 응답 관련 기본 형태
-- CommonControllerAdvice : 컨트롤러 인터셉터
+    - BaseException : 커스텀 예외 관련 기본 형태 (명시적 예외의 기본 구조)
+    - CommonResponse : 응답 관련 기본 형태
+    - CommonControllerAdvice : 컨트롤러 인터셉터
 
 * 중앙화된 로그 시스템 구축
-- API 의 request, response 로그 체크
+    - API 의 request, response 로그 체크
